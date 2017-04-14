@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header class="text-center">
+      <h1>Create League</h1>
+			<nav>
+				<ul class="list-inline">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/leagues">Leagues</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+    <hr>
+		<main class="container">
+      <form action="/leagues" method="POST">
+        <div class="form-group">
+          <label for="name">Username</label>
+          <input class="form-control" type="text" name="name" placeholder="League Name">
+        </div>
+        <div class="form-group">
+          <label for="sport">Sport</label>
+          <input class="form-control" type="text" name="sport" placeholder="Sport">
+        </div>
+        <input class="form-control btn btn-default" type="submit" value="Create League">
+      </form>
+    </main>
+  </body>
+</html>

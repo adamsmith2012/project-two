@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header class="text-center">
+			<h1>Leagues</h1>
+			<nav>
+				<ul class="list-inline">
+					<li>
+						<a href="/">Home</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+    <hr>
+    <main class="container text-center">
+      <a class="btn btn-primary" href="/leagues/new">Create League</a>
+      <ul class="league-list list-unstyled">
+        <% for(var i = 0; i < leagues.length; i++) { %>
+          <a href="leagues/<%= leagues[i].id %>">
+            <li>
+              <%= leagues[i].name %>
+            </li>
+          </a>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>
