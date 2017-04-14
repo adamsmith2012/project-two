@@ -18,8 +18,8 @@ app.use(express.static('public'));
 var leaguesController = require('./controllers/leagues.js');
 app.use('/leagues', leaguesController);
 
-// var teamsController = require('./controllers/teams.js');
-// app.use('/teams', teamsController);
+var teamsController = require('./controllers/teams.js');
+app.use('/teams', teamsController);
 
 // LISTENERS
 

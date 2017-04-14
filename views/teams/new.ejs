@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header class="text-center">
+			<h1>Add a Team</h1>
+			<nav>
+				<ul class="list-inline">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/teams">Teams</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+    <hr>
+		<main class="container">
+      <form action="/teams" method="POST">
+        <div class="form-group">
+          <label for="leagueId">League</label>
+          <select class="form-control" name="leagueId">
+            <% for(var i = 0; i < leagues.length; i++) { %>
+              <option value="<%= leagues[i]._id %>"><%= leagues[i].name %> : <%= leagues[i].sport %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Team Name</label>
+          <input class="form-control" type="text" name="name" placeholder="Team Name">
+        </div>
+        <div class="form-group">
+          <input class="form-control btn btn-default" type="submit" value="Add Team">
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

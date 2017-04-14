@@ -13,6 +13,7 @@
   <body>
     <header class="text-center">
 			<h1><%= league.name %></h1>
+			<h4><%= league.sport %></h4>
 			<nav>
 				<ul class="list-inline">
 					<li>
@@ -27,9 +28,12 @@
     <hr>
     <main class="container">
       <section class="text-center">
+        <h3>Teams</h3>
         <ul class="list-unstyled">
           <% for(var i = 0; i < league.teams.length; i++) { %>
-            <li><%= league.teams[i].name %></li>
+            <a href="/teams/<%= league.teams[i]._id %>">
+              <li><%= league.teams[i].name %></li>
+            </a>
           <% } %>
         </ul>
         <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
