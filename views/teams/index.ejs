@@ -25,6 +25,16 @@
 		<main class="container text-center">
       <a class="btn btn-primary" href="/teams/new">Add Team</a><br>
       <ul class="team-list list-unstyled">
+        <%# Sort teams by name %>
+        <% teams = teams.sort(function(a, b) {                %>
+        <%   if (a.name < b.name) {                           %>
+        <%     return -1;                                     %>
+        <%   }                                                %>
+        <%   if (a.name > b.name) {                           %>
+        <%     return 1;                                      %>
+        <%   }                                                %>
+        <%   return 0;                                        %>
+        <% })                                                 %>
         <% for(var i = 0; i < teams.length; i++) { %>
           <li>
             <a href="teams/<%= teams[i].id %>">

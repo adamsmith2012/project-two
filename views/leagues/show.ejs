@@ -28,14 +28,41 @@
     <hr>
     <main class="container">
       <section class="text-center">
-        <h3>Teams</h3>
-        <ul class="list-unstyled">
+        <h3>Standings</h3>
+      </section>
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Ties</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+          <%# Sort teams by points %>
+          <% league.teams = league.teams.sort(function(a, b) { %>
+          <%   return parseFloat(b.points) - parseFloat(a.points); %>
+          <% }); %>
           <% for(var i = 0; i < league.teams.length; i++) { %>
-            <a href="/teams/<%= league.teams[i]._id %>">
-              <li><%= league.teams[i].name %></li>
-            </a>
+            <tr>
+              <td>
+                <a href="/teams/<%= league.teams[i]._id %>">
+                  <%= league.teams[i].name %>
+                </a>
+              </td>
+              <td><%= league.teams[i].wins %></td>
+              <td><%= league.teams[i].losses %></td>
+              <td><%= league.teams[i].ties %></td>
+              <td><%= league.teams[i].points %></td>
+            </tr>
           <% } %>
-        </ul>
+          </tbody>
+        </table>
+      </section>
+      <section class="text-center">
         <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
         <hr>
         <form class="" action="/leagues/<%= league.id %>?_method=DELETE" method="POST">

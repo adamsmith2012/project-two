@@ -24,10 +24,11 @@ router.get('/new', function(req, res) {
 
 // CREATE
 router.post('/', function(req, res) {
+  req.body.points = parseInt(req.body.wins) * 3 + parseInt(req.body.ties); // calculate points
+
   League.findById(req.body.leagueId, function(err, foundLeague) {
     req.body.leaguename = foundLeague.leaguename;
     Team.create(req.body, function(err, createdTeam) {
-      console.log(createdTeam);
       foundLeague.teams.push(createdTeam);
       foundLeague.save(function(err, data) {
         res.redirect('/teams');
@@ -56,6 +57,8 @@ router.get('/:id/edit', function(req, res) {
 
 // PUT
 router.put('/:id', function(req, res) {
+  req.body.points = parseInt(req.body.wins) * 3 + parseInt(req.body.ties); // calculate points
+
   Team.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedTeam) {
     League.findOne({ 'teams._id' : req.params.id }, function(err, foundLeague) {
       foundLeague.teams.id(req.params.id).remove();

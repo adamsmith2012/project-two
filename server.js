@@ -39,12 +39,14 @@ app.get('/seed/newleagues', function(req, res) {
     var wins = Math.floor(Math.random() * 15);
     var losses = Math.floor(Math.random() * (15 - wins));
     var ties = 15 - wins - losses;
+    var points = wins * 3 + ties;
 
     newTeams.push({
       name: teamNames[i],
       wins: wins,
       losses: losses,
-      ties: ties
+      ties: ties,
+      points: points
     });
   }
 
