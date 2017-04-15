@@ -26,6 +26,24 @@
 		</header>
     <hr>
 		<main class="container">
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Ties</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= team.wins %></td>
+              <td><%= team.losses %></td>
+              <td><%= team.ties %></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
       <section class="text-center">
         <a class="btn btn-default" href="/teams/<%= team._id %>/edit">Edit Team</a>
         <hr>

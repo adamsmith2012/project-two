@@ -31,6 +31,20 @@
           <label for="name">Team Name</label>
           <input class="form-control" type="text" name="name" value="<%= team.name %>">
         </div>
+        <div class="row">
+          <div class="col-xs-4 form-group">
+            <label for="wins">Wins</label>
+            <input class="form-control" type="number" name="wins" value="<%= team.wins %>">
+          </div>
+          <div class="col-xs-4 form-group">
+            <label for="losses">Losses</label>
+            <input class="form-control" type="number" name="losses" value="<%= team.losses %>">
+          </div>
+          <div class="col-xs-4 form-group">
+            <label for="ties">Ties</label>
+            <input class="form-control" type="number" name="ties" value="<%= team.ties %>">
+          </div>
+        </div>
         <div class="form-group">
           <input class="form-control btn btn-default" type="submit" value="Update Team">
         </div>

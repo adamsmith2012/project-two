@@ -31,21 +31,22 @@ app.get('/', function(req, res) {
 /*** SEED DATA ***/
 app.get('/seed/newleagues', function(req, res) {
 
+  var teamNames = ["Bulldogs", "Dragons", "Dolphins", "Kings", "Geckos", "Thunderbirds", "Sabercats", "Mammoths", "Lightning", "Rainiers", "Fighting Irish", "Panthers"];
 
-  var newTeams = [
-    {
-      name: "Bulldogs"
-    },
-    {
-      name: "Dragons"
-    },
-    {
-      name: "Dolphins"
-    },
-    {
-      name: "Kings"
-    }
-  ];
+  var newTeams = [];
+
+  for (var i = 0; i < teamNames.length; i++) {
+    var wins = Math.floor(Math.random() * 15);
+    var losses = Math.floor(Math.random() * (15 - wins));
+    var ties = 15 - wins - losses;
+
+    newTeams.push({
+      name: teamNames[i],
+      wins: wins,
+      losses: losses,
+      ties: ties
+    });
+  }
 
   Team.create(newTeams, function(err, teams) {
 
@@ -55,17 +56,17 @@ app.get('/seed/newleagues', function(req, res) {
   		{
   			name: "Boy's U-12",
   			sport: "Soccer",
-  	    teams: [ teams[0], teams[1]]
+  	    teams: teams.slice(0, Math.floor(teams.length / 3))
   		},
   		{
         name: "Girl's U-12",
   			sport: "Soccer",
-        teams: [ teams[2] ]
+        teams: teams.slice(Math.ceil(teams.length / 3), Math.floor(teams.length / 3) * 2)
   		},
   		{
         name: "Boy's U-15",
   			sport: "Baseball",
-        teams: [ teams[3] ]
+        teams: teams.slice(Math.ceil(teams.length / 3) * 2, teams.length)
   		},
   	];
 
