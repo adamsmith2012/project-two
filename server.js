@@ -8,6 +8,9 @@ var session = require('express-session');
 var League = require('./models/leagues.js');
 var Team = require('./models/teams.js');
 
+var port = process.env.PORT || 3000;
+var mongoDBURI = process.env.MONGODB_URI || ''mongodb://localhost:27017/sports'
+
 // MIDDLEWARE
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -120,11 +123,11 @@ app.get('/seed/newleagues', function(req, res) {
 });
 
 
-mongoose.connect('mongodb://localhost:27017/sports');
+mongoose.connect(mongoDBURI);
 mongoose.connection.once('open', function() {
   console.log("Connected to mongo");
 });
 
-app.listen(3000, function() {
-  console.log("Listening...");
+app.listen(port, function() {
+  console.log("Listening on port " + port);
 });
