@@ -9,7 +9,7 @@ var League = require('./models/leagues.js');
 var Team = require('./models/teams.js');
 
 var port = process.env.PORT || 3000;
-var mongoDBURI = process.env.MONGODB_URI || ''mongodb://localhost:27017/sports'
+var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sports'
 
 // MIDDLEWARE
 
