@@ -12,6 +12,25 @@
   </head>
   <body>
     <header class="text-center">
+      <ul class="list-inline user-ul">
+        <% if(!currentUser) { %>
+          <li>
+            <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
+          </li>
+          <li>
+            <a class="btn btn-default btn-sm" href="/users/new">Register</a>
+          </li>
+        <% } else { %>
+          <li>
+            Welcome, <%= currentUser.username %>!
+          </li>
+          <li>
+            <form class="" action="/sessions?_method=DELETE" method="POST">
+              <input class="btn btn-default btn-sm" type="submit" value="Logout">
+            </form>
+          </li>
+        <% } %>
+      </ul>
 			<h1><%= league.name %></h1>
 			<h4><%= league.sport %></h4>
 			<nav>

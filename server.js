@@ -3,6 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var session = require('express-session');
 
 var League = require('./models/leagues.js');
 var Team = require('./models/teams.js');
@@ -12,8 +13,19 @@ var Team = require('./models/teams.js');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+app.use(session({
+  secret: "kungfukenny",
+  resave: false,
+  saveUninitialized: false
+}));
 
 // CONTROLLERS
+
+var usersController = require('./controllers/users.js');
+app.use('/users', usersController);
+
+var sessionController = require('./controllers/sessions.js');
+app.use('/sessions', sessionController);
 
 var leaguesController = require('./controllers/leagues.js');
 app.use('/leagues', leaguesController);
@@ -24,7 +36,9 @@ app.use('/teams', teamsController);
 // LISTENERS
 
 app.get('/', function(req, res) {
-  res.render('index.ejs');
+  res.render('index.ejs', {
+    currentUser: req.session.currentUser
+  });
 });
 
 

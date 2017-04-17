@@ -8,6 +8,7 @@ var League = require('../models/leagues.js');
 router.get('/', function(req, res) {
   Team.find({}, function(err, teams) {
     res.render('teams/index.ejs', {
+      currentUser: req.session.currentUser,
       teams: teams
     });
   });
@@ -17,6 +18,7 @@ router.get('/', function(req, res) {
 router.get('/new', function(req, res) {
   League.find({}, function(err, foundLeagues) {
     res.render('teams/new.ejs', {
+      currentUser: req.session.currentUser,
       leagues: foundLeagues
     });
   });
@@ -41,6 +43,7 @@ router.post('/', function(req, res) {
 router.get('/:id', function(req, res){
 	Team.findById(req.params.id, function(err, team){
 		res.render('teams/show.ejs', {
+      currentUser: req.session.currentUser,
 			team: team
 		});
 	});
@@ -50,6 +53,7 @@ router.get('/:id', function(req, res){
 router.get('/:id/edit', function(req, res) {
   Team.findById(req.params.id, function(err, team) {
     res.render('teams/edit.ejs', {
+      currentUser: req.session.currentUser,
       team: team
     });
   });
