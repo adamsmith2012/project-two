@@ -45,7 +45,19 @@ app.get('/', function(req, res) {
 /*** SEED DATA ***/
 app.get('/seed/newleagues', function(req, res) {
 
-  var teamNames = ["Bulldogs", "Dragons", "Dolphins", "Kings", "Geckos", "Thunderbirds", "Sabercats", "Mammoths", "Lightning", "Rainiers", "Fighting Irish", "Panthers"];
+  var teamNames = ["Bulldogs", "Dragons", "Dolphins", "Kings", "Geckos",
+                   "Thunderbirds", "Sabercats", "Mammoths", "Lightning",
+                   "Rainiers", "Fighting Irish", "Panthers", "Donkeys",
+                   "Red Devils", "Jets", "Thunder", "Blasters", "Lasers",
+                   "Razorbacks", "Sharks", "Cobras", "Steelheads", "Angels",
+                   "Gators", "Ants", "Badgers", "Bears", "Bats", "Barracudas",
+                   "Bison", "Beavers", "Buffalo", "Cheetahs", "Bees", "Aces",
+                   "Coyotes", "Roaches", "Crows", "Ducks", "Elk", "Eagles",
+                   "Falcons", "Ferrets", "Foxes", "Gazelles", "Hornets",
+                   "Jackels", "Kangaroos", "Jaguars", "Lemurs", "Lions", "Orcas",
+                   "Otters", "Penguins", "Rabbits", "Rams", "Ravens", "Scorpions",
+                   "Snakes", "Spiders", "Rays", "Tigers", "Wildcats", "Wolves"
+                  ];
 
   var newTeams = [];
 
@@ -68,23 +80,36 @@ app.get('/seed/newleagues', function(req, res) {
 
     console.log("SEED: NEW Teams CREATED!");
 
-  	var newLeagues = [
-  		{
-  			name: "Boy's U-12",
-  			sport: "Soccer",
-  	    teams: teams.slice(0, Math.floor(teams.length / 3))
-  		},
-  		{
-        name: "Girl's U-12",
-  			sport: "Soccer",
-        teams: teams.slice(Math.ceil(teams.length / 3), Math.floor(teams.length / 3) * 2)
-  		},
-  		{
-        name: "Boy's U-15",
-  			sport: "Baseball",
-        teams: teams.slice(Math.ceil(teams.length / 3) * 2, teams.length)
-  		},
-  	];
+    var leagueNames = ["Boy's U-12", "Girl's U-12", "Boy's U-13", "Girl's U-13", "Boy's U-14", "Girl's U-14"];
+
+    var sports = ["Soccer", "Baseball", "Basketball"];
+
+    var newLeagues = [];
+
+    for (var i = 0; i < leagueNames.length; i++) {
+      for (var j = 0; j < sports.length; j++) {
+
+        var sport = sports[j];
+
+        newLeagues.push({
+          name: leagueNames[i],
+          sport: sport,
+          teams: []
+        });
+      }
+    }
+
+    var leagueCount = 0;
+
+    while(teams.length > 0) {
+      newLeagues[leagueCount].teams.push(teams.splice(Math.floor(Math.random() * teams.length), 1)[0]);
+
+      leagueCount++;
+
+      if (leagueCount > newLeagues.length - 1) {
+        leagueCount = 0;
+      }
+    }
 
   	League.create(newLeagues, function(err) {
   		  console.log("SEED: NEW LEAGUES CREATED!");
