@@ -16,12 +16,16 @@ router.get('/', function(req, res) {
 
 // NEW
 router.get('/new', function(req, res) {
-  League.find({}, function(err, foundLeagues) {
-    res.render('teams/new.ejs', {
-      currentUser: req.session.currentUser,
-      leagues: foundLeagues
+  if(req.session.currentUser) {
+    League.find({}, function(err, foundLeagues) {
+      res.render('teams/new.ejs', {
+        currentUser: req.session.currentUser,
+        leagues: foundLeagues
+      });
     });
-  });
+  } else {
+    res.redirect('/teams');
+  }
 });
 
 // CREATE
@@ -51,12 +55,16 @@ router.get('/:id', function(req, res){
 
 // EDIT
 router.get('/:id/edit', function(req, res) {
-  Team.findById(req.params.id, function(err, team) {
-    res.render('teams/edit.ejs', {
-      currentUser: req.session.currentUser,
-      team: team
+  if(req.session.currentUser) {
+    Team.findById(req.params.id, function(err, team) {
+      res.render('teams/edit.ejs', {
+        currentUser: req.session.currentUser,
+        team: team
+      });
     });
-  });
+  } else {
+    res.redirect('/teams');
+  }
 });
 
 // PUT

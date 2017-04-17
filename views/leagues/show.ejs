@@ -81,13 +81,15 @@
           </tbody>
         </table>
       </section>
-      <section class="text-center">
-        <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
-        <hr>
-        <form class="" action="/leagues/<%= league.id %>?_method=DELETE" method="POST">
-          <input class="btn btn-danger" type="submit" value="Delete League">
-        </form>
-      </section>
+      <% if(currentUser) { %>
+        <section class="text-center">
+          <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
+          <hr>
+          <form class="" action="/leagues/<%= league.id %>?_method=DELETE" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete League">
+          </form>
+        </section>
+      <% } %>
     </main>
   </body>
 </html>

@@ -65,13 +65,15 @@
           </tbody>
         </table>
       </section>
-      <section class="text-center">
-        <a class="btn btn-default" href="/teams/<%= team._id %>/edit">Edit Team</a>
-        <hr>
-		    <form action="/teams/<%= team._id %>?_method=DELETE" method="POST">
-		        <input class="btn btn-danger" type="submit" value="Delete Team"/>
-		    </form>
-			</section>
+      <% if(currentUser) { %>
+        <section class="text-center">
+          <a class="btn btn-default" href="/teams/<%= team._id %>/edit">Edit Team</a>
+          <hr>
+  		    <form action="/teams/<%= team._id %>?_method=DELETE" method="POST">
+  		        <input class="btn btn-danger" type="submit" value="Delete Team"/>
+  		    </form>
+  			</section>
+      <% } %>
     </main>
   </body>
 </html>

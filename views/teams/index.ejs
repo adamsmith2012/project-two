@@ -42,7 +42,9 @@
 		</header>
     <hr>
 		<main class="container text-center">
-      <a class="btn btn-primary" href="/teams/new">Add Team</a><br>
+      <% if(currentUser) { %>
+        <a class="btn btn-primary" href="/teams/new">Add Team</a><br>
+      <% } %>
       <ul class="team-list list-unstyled">
         <%# Sort teams by name %>
         <% teams = teams.sort(function(a, b) {                %>
