@@ -59,7 +59,7 @@ router.get('/:id/edit', function(req, res) {
 // PUT
 router.put('/:id', function(req, res) {
   League.findByIdAndUpdate(req.params.id, req.body, function() {
-    res.redirect('/leagues');
+    res.redirect('/leagues/' + req.params.id);
   });
 });
 

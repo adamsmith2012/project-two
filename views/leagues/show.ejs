@@ -46,6 +46,7 @@
 		</header>
     <hr>
     <main class="container">
+      <!-- Standings -->
       <section class="text-center">
         <h3>Standings</h3>
       </section>
@@ -81,10 +82,43 @@
           </tbody>
         </table>
       </section>
+      <!-- Schedule -->
+      <section class="text-center">
+        <h3>Schedule</h3>
+      </section>
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Home Team</th>
+              <th>Result</th>
+              <th>Away Team</th>
+            </tr>
+          </thead>
+          <tbody>
+          <%# Sort teams by points %>
+          <% league.teams = league.teams.sort(function(a, b) { %>
+          <%   return parseFloat(b.points) - parseFloat(a.points); %>
+          <% }); %>
+          <% for(var i = 0; i < league.games.length; i++) { %>
+            <tr>
+              <td><%= league.games[i].date %></td>
+              <td><%= league.games[i].location %></td>
+              <td><%= league.games[i].home.name %></td>
+              <td><%= league.games[i].homeScore %> - <%= league.games[i].awayScore %></td>
+              <td><%= league.games[i].away.name %></td>
+            </tr>
+          <% } %>
+          </tbody>
+        </table>
+      </section>
       <% if(currentUser) { %>
+        <hr>
         <section class="text-center">
+          <a class="btn btn-default" href="/games/new/<%= league._id %>">Schedule a Game</a>
           <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
-          <hr>
           <form class="" action="/leagues/<%= league.id %>?_method=DELETE" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete League">
           </form>

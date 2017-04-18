@@ -33,7 +33,7 @@ router.post('/', function(req, res) {
   req.body.points = parseInt(req.body.wins) * 3 + parseInt(req.body.ties); // calculate points
 
   League.findById(req.body.leagueId, function(err, foundLeague) {
-    req.body.leaguename = foundLeague.leaguename;
+    req.body.leaguename = foundLeague.name;
     Team.create(req.body, function(err, createdTeam) {
       foundLeague.teams.push(createdTeam);
       foundLeague.save(function(err, data) {

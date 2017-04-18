@@ -7,6 +7,7 @@ var session = require('express-session');
 
 var League = require('./models/leagues.js');
 var Team = require('./models/teams.js');
+var Game = require('./models/games.js');
 
 var port = process.env.PORT || 3000;
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sports'
@@ -35,6 +36,9 @@ app.use('/leagues', leaguesController);
 
 var teamsController = require('./controllers/teams.js');
 app.use('/teams', teamsController);
+
+var gamesController = require('./controllers/games.js');
+app.use('/games', gamesController);
 
 // LISTENERS
 
@@ -98,7 +102,8 @@ app.get('/seed/newleagues', function(req, res) {
         newLeagues.push({
           name: leagueNames[i],
           sport: sport,
-          teams: []
+          teams: [],
+          games: []
         });
       }
     }
