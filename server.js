@@ -72,6 +72,7 @@ app.get('/seed/newleagues', function(req, res) {
 
     newTeams.push({
       name: teamNames[i],
+      email: teamNames[i] + "@gmail.com",
       wins: wins,
       losses: losses,
       ties: ties,
