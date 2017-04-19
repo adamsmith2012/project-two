@@ -1,5 +1,33 @@
+body {
+  background-image: url("/images/background.jpeg");
+  background-attachment: fixed;
+  background-position: 70% 50%;
+}
+
+main {
+  background-color: rgba(255, 255, 255, .85);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 10px;
+}
+
+.header-div {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .user-ul {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.logo-div {
+
 }

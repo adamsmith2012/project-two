@@ -12,37 +12,46 @@
   </head>
   <body>
     <header class="text-center">
-      <ul class="list-inline user-ul">
-        <% if(!currentUser) { %>
-          <li>
-            <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
-          </li>
-          <li>
-            <a class="btn btn-default btn-sm" href="/users/new">Register</a>
-          </li>
-        <% } else { %>
-          <li>
-            Welcome, <%= currentUser.username %>!
-          </li>
-          <li>
-            <form class="" action="/sessions?_method=DELETE" method="POST">
-              <input class="btn btn-default btn-sm" type="submit" value="Logout">
-            </form>
-          </li>
-        <% } %>
-      </ul>
-			<h1><%= league.name %></h1>
-			<h4><%= league.sport %></h4>
-			<nav>
-				<ul class="list-inline">
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/leagues">Leagues</a>
-					</li>
-				</ul>
-			</nav>
+      <div class="row">
+        <div class="logo-div col-sm-4 header-div">
+          <h4><a href="/">League Manager</a></h4>
+        </div>
+        <div class="col-sm-4">
+          <h1><%= league.name %></h1>
+          <h4><%= league.sport %> League</h4>
+    			<nav>
+    				<ul class="list-inline">
+    					<li>
+    						<a href="/leagues">Leagues</a>
+    					</li>
+    					<li>
+    						<a href="/teams">Teams</a>
+    					</li>
+    				</ul>
+    			</nav>
+        </div>
+        <div class="col-sm-4 header-div">
+          <ul class="list-inline">
+            <% if(!currentUser) { %>
+              <li>
+                <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
+              </li>
+              <li>
+                <a class="btn btn-default btn-sm" href="/users/new">Register</a>
+              </li>
+            <% } else { %>
+              <li>
+                Welcome, <%= currentUser.username %>!
+              </li>
+              <li>
+                <form class="" action="/sessions?_method=DELETE" method="POST">
+                  <input class="btn btn-default btn-sm" type="submit" value="Logout">
+                </form>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
 		</header>
     <hr>
     <main class="container">
@@ -117,11 +126,10 @@
       <% if(currentUser) { %>
         <hr>
         <section class="text-center">
-          <a class="btn btn-default" href="/games/new/<%= league._id %>">Schedule a Game</a>
-          <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
-          <form class="" action="/leagues/<%= league.id %>?_method=DELETE" method="POST">
-            <input class="btn btn-danger" type="submit" value="Delete League">
-          </form>
+          <div class="btn-group" role="group" aria-label="...">
+            <a class="btn btn-default" href="/games/new/<%= league._id %>">Schedule a Game</a>
+            <a class="btn btn-default" href="/leagues/<%= league.id %>/edit">Edit League</a>
+          </div>
         </section>
       <% } %>
     </main>

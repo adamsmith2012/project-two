@@ -12,36 +12,45 @@
   </head>
   <body>
     <header class="text-center">
-      <ul class="list-inline user-ul">
-        <% if(!currentUser) { %>
-          <li>
-            <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
-          </li>
-          <li>
-            <a class="btn btn-default btn-sm" href="/users/new">Register</a>
-          </li>
-        <% } else { %>
-          <li>
-            Welcome, <%= currentUser.username %>!
-          </li>
-          <li>
-            <form class="" action="/sessions?_method=DELETE" method="POST">
-              <input class="btn btn-default btn-sm" type="submit" value="Logout">
-            </form>
-          </li>
-        <% } %>
-      </ul>
-      <h1>Home</h1>
-			<nav>
-				<ul class="list-inline">
-					<li>
-						<a href="/leagues">Leagues</a>
-					</li>
-					<li>
-						<a href="/teams">Teams</a>
-					</li>
-				</ul>
-			</nav>
+      <div class="row">
+        <div class="logo-div col-sm-4 header-div">
+          <h4><a href="/">League Manager</a></h4>
+        </div>
+        <div class="col-sm-4">
+          <h1>Home</h1>
+    			<nav>
+    				<ul class="list-inline">
+    					<li>
+    						<a href="/leagues">Leagues</a>
+    					</li>
+    					<li>
+    						<a href="/teams">Teams</a>
+    					</li>
+    				</ul>
+    			</nav>
+        </div>
+        <div class="col-sm-4 header-div">
+          <ul class="list-inline">
+            <% if(!currentUser) { %>
+              <li>
+                <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
+              </li>
+              <li>
+                <a class="btn btn-default btn-sm" href="/users/new">Register</a>
+              </li>
+            <% } else { %>
+              <li>
+                Welcome, <%= currentUser.username %>!
+              </li>
+              <li>
+                <form class="" action="/sessions?_method=DELETE" method="POST">
+                  <input class="btn btn-default btn-sm" type="submit" value="Logout">
+                </form>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
 		</header>
     <hr>
   </body>
