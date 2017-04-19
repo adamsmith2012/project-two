@@ -7,9 +7,18 @@ var Team = require('../models/teams.js');
 // INDEX
 router.get('/', function(req, res) {
   League.find({}, function(err, leagues) {
+    var sports = [];
+
+    for (var i = 0; i < leagues.length; i++) {
+      if (!sports.includes(leagues[i].sport)) {
+        sports.push(leagues[i].sport)
+      }
+    }
+
     res.render('leagues/index.ejs', {
       currentUser: req.session.currentUser,
-      leagues: leagues
+      leagues: leagues,
+      sports : sports
     });
   });
 });

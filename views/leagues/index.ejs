@@ -53,22 +53,34 @@
       </div>
 		</header>
     <hr>
-    <main class="container text-center">
-      <div class="">
+    <main class="container">
+      <div class="text-center">
         <% if(currentUser) { %>
           <a class="btn btn-primary" href="/leagues/new">Create League</a>
           <% } %>
       </div>
-      <div>
-        <ul class="league-list list-unstyled">
-          <% for(var i = 0; i < leagues.length; i++) { %>
-            <a href="leagues/<%= leagues[i].id %>">
-              <li>
-                <%= leagues[i].name %> -  <%= leagues[i].sport %>
-              </li>
-            </a>
-            <% } %>
-          </ul>
+      <br>
+      <div class="row">
+        <% for(var i = 0; i < sports.length; i++) { %>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading"><%= sports[i] %> Leagues</div>
+              <div class="panel-body">
+                <ul class="league-list list-unstyled">
+                  <% for(var j = 0; j < leagues.length; j++) { %>
+                    <% if(leagues[j].sport == sports[i]) { %>
+                      <a href="leagues/<%= leagues[j].id %>">
+                        <li>
+                          <%= leagues[j].name %>
+                        </li>
+                      </a>
+                    <% } %>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% } %>
       </div>
     </main>
   </body>

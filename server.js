@@ -88,9 +88,9 @@ app.get('/seed/newleagues', function(req, res) {
 
     console.log("SEED: NEW Teams CREATED!");
 
-    var leagueNames = ["Boy's U-12", "Girl's U-12", "Boy's U-13", "Girl's U-13", "Boy's U-14", "Girl's U-14"];
+    var leagueNames = ["Boy's U-12", "Girl's U-12", "Boy's U-14", "Girl's U-14"];
 
-    var sports = ["Soccer", "Basketball"];
+    var sports = ["Soccer", "Basketball", "Baseball"];
 
     var newLeagues = [];
 
