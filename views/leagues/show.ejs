@@ -104,7 +104,7 @@
           <% }); %>
           <% for(var i = 0; i < league.games.length; i++) { %>
             <tr>
-              <td><%= league.games[i].date %></td>
+              <td><a href="/games/<%= league.games[i]._id %>"><%= league.games[i].date %></a></td>
               <td><%= league.games[i].location %></td>
               <td><%= league.games[i].home.name %></td>
               <td><%= league.games[i].homeScore %> - <%= league.games[i].awayScore %></td>

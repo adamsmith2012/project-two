@@ -90,7 +90,7 @@ app.get('/seed/newleagues', function(req, res) {
 
     var leagueNames = ["Boy's U-12", "Girl's U-12", "Boy's U-13", "Girl's U-13", "Boy's U-14", "Girl's U-14"];
 
-    var sports = ["Soccer", "Baseball", "Basketball"];
+    var sports = ["Soccer", "Basketball"];
 
     var newLeagues = [];
 

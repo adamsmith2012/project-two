@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header class="text-center">
+      <ul class="list-inline user-ul">
+        <% if(!currentUser) { %>
+          <li>
+            <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
+          </li>
+          <li>
+            <a class="btn btn-default btn-sm" href="/users/new">Register</a>
+          </li>
+        <% } else { %>
+          <li>
+            Welcome, <%= currentUser.username %>!
+          </li>
+          <li>
+            <form class="" action="/sessions?_method=DELETE" method="POST">
+              <input class="btn btn-default btn-sm" type="submit" value="Logout">
+            </form>
+          </li>
+        <% } %>
+      </ul>
+			<h1>Game Results</h1>
+      <h4><%= game.home.name %> vs. <%= game.away.name %></h4>
+			<nav>
+				<ul class="list-inline">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/leagues/<%= league._id %>">League</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+    <hr>
+		<main class="container">
+      <div class="text-center">
+        <h3><%= game.location %></h3>
+        <h5><%= game.date %></h5>
+      </div>
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <h2><%= game.home.name %></h2>
+        </div>
+        <div class="col-sm-4">
+          <h2><%= game.homeScore %> - <%= game.awayScore %></h2>
+        </div>
+        <div class="col-sm-4">
+          <h2><%= game.away.name %></h2>
+        </div>
+      </div>
+      <% if(currentUser) { %>
+        <div class="text-center">
+          <a href="/games/<%= game._id %>/edit">Edit Game</a>
+        </div>
+      <% } %>
+    </main>
+  </body>
+</html>

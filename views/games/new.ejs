@@ -32,13 +32,14 @@
         <% } %>
       </ul>
 			<h1>Schedule a Game</h1>
+      <h4><%= league.name %> - <%= league.sport %></h4>
 			<nav>
 				<ul class="list-inline">
 					<li>
 						<a href="/">Home</a>
 					</li>
 					<li>
-						<a href="/leagues">Leagues</a>
+						<a href="/leagues/<%= league._id %>">League</a>
 					</li>
 				</ul>
 			</nav>

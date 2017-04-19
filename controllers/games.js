@@ -57,21 +57,27 @@ router.post('/', function(req, res) {
 
 // SHOW
 router.get('/:id', function(req, res){
-	Game.findById(req.params.id, function(err, game){
-		res.render('games/show.ejs', {
-      currentUser: req.session.currentUser,
-			game: game
-		});
+	Game.findById(req.params.id, function(err, foundGame){
+    League.findOne({'games._id' : req.params.id}, function(err, foundLeague) {
+      res.render('games/show.ejs', {
+        currentUser: req.session.currentUser,
+        game: foundGame,
+        league: foundLeague
+      });
+    });
 	});
 });
 
 // EDIT
 router.get('/:id/edit', function(req, res) {
   if(req.session.currentUser) {
-    Game.findById(req.params.id, function(err, game) {
-      res.render('games/edit.ejs', {
-        currentUser: req.session.currentUser,
-        game: game
+    Game.findById(req.params.id, function(err, foundGame) {
+      League.findOne({'games._id' : req.params.id}, function(err, foundLeague) {
+        res.render('games/edit.ejs', {
+          currentUser: req.session.currentUser,
+          game: foundGame,
+          league: foundLeague
+        });
       });
     });
   } else {
@@ -88,7 +94,7 @@ router.put('/:id', function(req, res) {
       foundLeague.games.id(req.params.id).remove();
       foundLeague.games.push(updatedGame);
       foundLeague.save(function(err, data) {
-        res.redirect('/games');
+        res.redirect('/leagues/' + foundLeague._id);
       });
     });
   });

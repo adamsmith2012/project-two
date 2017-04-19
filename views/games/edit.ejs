@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header class="text-center">
+      <ul class="list-inline user-ul">
+        <% if(!currentUser) { %>
+          <li>
+            <a class="btn btn-default btn-sm" href="/sessions/new">Log In</a>
+          </li>
+          <li>
+            <a class="btn btn-default btn-sm" href="/users/new">Register</a>
+          </li>
+        <% } else { %>
+          <li>
+            Welcome, <%= currentUser.username %>!
+          </li>
+          <li>
+            <form class="" action="/sessions?_method=DELETE" method="POST">
+              <input class="btn btn-default btn-sm" type="submit" value="Logout">
+            </form>
+          </li>
+        <% } %>
+      </ul>
+			<h1>Edit Game</h1>
+      <h4><%= game.home.name %> vs. <%= game.away.name %></h4>
+			<nav>
+				<ul class="list-inline">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/leagues/<%= league._id %>">League</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+    <hr>
+		<main class="container">
+      <form action="/games/<%= game._id %>?_method=PUT" method="POST">
+        <input type="hidden" name="leagueId" value="<%= league._id %>">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <% var date = game.date.toJSON().split('T')[0]; %>
+          <input class="form-control" type="date" name="date" value="<%= date %>" required="true">
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input class="form-control" type="text" name="location" value="<%= game.location %>" required="true">
+        </div>
+        <div class="row">
+          <div class="col-xs-6 form-group">
+            <label for="home">Home Team</label>
+            <select class="form-control" name="home">
+              <% for(var i = 0; i < league.teams.length; i++) { %>
+                <option value="<%= league.teams[i]._id %>"
+                  <% if(league.teams[i].name == game.home.name) { %>
+                    selected
+                  <% } %>
+                >
+                  <%= league.teams[i].name %>
+                </option>
+              <% } %>
+            </select>
+          </div>
+          <div class="col-xs-6 form-group">
+            <label for="homeScore">Home Score</label>
+            <input class="form-control" type="number" name="homeScore" value="<%= game.homeScore %>" placeholder="0">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 form-group">
+            <label for="away">Away Team</label>
+            <select class="form-control" name="away">
+              <% for(var i = 0; i < league.teams.length; i++) { %>
+                <option value="<%= league.teams[i]._id %>"
+                  <% if(league.teams[i].name == game.away.name) { %>
+                    selected
+                  <% } %>
+                >
+                  <%= league.teams[i].name %>
+                </option>
+              <% } %>
+            </select>
+          </div>
+          <div class="col-xs-6 form-group">
+            <label for="homeScore">Away Score</label>
+            <input class="form-control" type="number" name="awayScore" value="<%= game.awayScore %>" placeholder="0">
+          </div>
+        </div>
+        <div class="form-group">
+          <input class="form-control btn btn-default" type="submit" value="Update Game">
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
