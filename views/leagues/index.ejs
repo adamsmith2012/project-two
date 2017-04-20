@@ -61,6 +61,16 @@
       </div>
       <br>
       <div class="row">
+        <%# Sort leagues by name %>
+        <% leagues = leagues.sort(function(a, b) {            %>
+        <%   if (a.name < b.name) {                           %>
+        <%     return -1;                                     %>
+        <%   }                                                %>
+        <%   if (a.name > b.name) {                           %>
+        <%     return 1;                                      %>
+        <%   }                                                %>
+        <%   return 0;                                        %>
+        <% })                                                 %>
         <% for(var i = 0; i < sports.length; i++) { %>
           <div class="col-sm-4">
             <div class="panel panel-default">
