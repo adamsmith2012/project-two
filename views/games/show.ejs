@@ -55,18 +55,22 @@
 		</header>
     <hr>
 		<main class="container">
-      <div class="text-center">
-        <h3><%= game.location %></h3>
-        <h5><%= game.date.toJSON().split('T')[0] %></h5>
-      </div>
       <div class="row text-center">
-        <div class="col-sm-4">
+        <div class="col-xs-4">
+          <br>
+          <br>
+          <h4>Home</h4>
           <h2><%= game.home.name %></h2>
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-4">
+          <h3><%= game.location %></h3>
+          <h5><%= game.date.toJSON().split('T')[0] %></h5>
           <h2><%= game.homeScore %> - <%= game.awayScore %></h2>
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-4">
+          <br>
+          <br>
+          <h4>Away</h4>
           <h2><%= game.away.name %></h2>
         </div>
       </div>
