@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|Cuprum');
+
 body {
   background-image: url("/images/background.jpeg");
   background-attachment: fixed;
   background-position: 70% 50%;
+  font-family: Cuprum;
 }
 
 main {
@@ -13,6 +16,10 @@ main {
 header {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 10px;
+}
+
+.container a {
+  font-size: 20px;
 }
 
 .header-div {
@@ -30,4 +37,5 @@ header {
 
 .logo-div h4 {
   font-size: 30px;
+  font-family: Courgette;
 }
