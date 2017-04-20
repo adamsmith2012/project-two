@@ -3,7 +3,6 @@ var router = express.Router();
 
 var League = require('../models/leagues.js');
 var Team = require('../models/teams.js');
-var Game = require('../models/games.js');
 
 /*** SEED DATA ***/
 router.get('/newleagues', function(req, res) {
@@ -77,47 +76,12 @@ router.get('/newleagues', function(req, res) {
       }
     }
 
-    var newGames = [];
-
-    var gamesPerLeague = 10;
-
-    // Add games to leagues
-    for (var i = 0; i < newLeagues.length; i++) {
-
-      var gameDate = new Date(Date.now());
-
-      for (var j = 0; j < gamesPerLeague; j++) {
-
-        gameDate.setDate(gameDate.getDate() + 3);
-
-        // Create new array so team can be spliced out
-        // so same team doesn't play itself
-        var teams = newLeagues[i].teams.slice();
-        var homeTeam = teams.splice(Math.floor(Math.random() * teams.length), 1)[0];
-        var awayTeam = teams.splice(Math.floor(Math.random() * teams.length), 1)[0];
-
-        var game = {
-          date: gameDate.getTime(),
-          home: homeTeam,
-          homeScore: Math.floor(Math.random() * 6),
-          away: awayTeam,
-          awayScore: Math.floor(Math.random() * 6),
-        }
-
-        newLeagues[i].games.push(game);
-        newGames.push(game);
-      }
-    }
-
-    Game.create(newGames, function(err) {
-      console.log("SEED: NEW GAMES CREATED!");
-
-      League.create(newLeagues, function(err) {
-        console.log("SEED: NEW LEAGUES CREATED!");
-        res.redirect('/');
-      });
-    });
+  	League.create(newLeagues, function(err) {
+  		  console.log("SEED: NEW LEAGUES CREATED!");
+  		  res.redirect('/');
+  	});
   });
+
 });
 
 module.exports = router;
