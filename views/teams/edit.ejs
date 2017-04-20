@@ -57,24 +57,24 @@
       <form action="/teams/<%= team._id %>?_method=PUT" method="POST">
         <div class="form-group">
           <label for="name">Team Name</label>
-          <input class="form-control" type="text" name="name" value="<%= team.name %>">
+          <input class="form-control" type="text" name="name" value="<%= team.name %>" required="true">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-control" type="email" name="email" value="<%= team.email %>">
+          <input class="form-control" type="email" name="email" value="<%= team.email %>" required="true">
         </div>
         <div class="row">
           <div class="col-xs-4 form-group">
             <label for="wins">Wins</label>
-            <input class="form-control" type="number" name="wins" value="<%= team.wins %>">
+            <input class="form-control" type="number" name="wins" value="<%= team.wins %>" required="true">
           </div>
           <div class="col-xs-4 form-group">
             <label for="losses">Losses</label>
-            <input class="form-control" type="number" name="losses" value="<%= team.losses %>">
+            <input class="form-control" type="number" name="losses" value="<%= team.losses %>" required="true">
           </div>
           <div class="col-xs-4 form-group">
             <label for="ties">Ties</label>
-            <input class="form-control" type="number" name="ties" value="<%= team.ties %>">
+            <input class="form-control" type="number" name="ties" value="<%= team.ties %>" required="true">
           </div>
         </div>
         <div class="form-group">
