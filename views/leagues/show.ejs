@@ -107,10 +107,16 @@
             </tr>
           </thead>
           <tbody>
-          <%# Sort teams by points %>
-          <% league.teams = league.teams.sort(function(a, b) { %>
-          <%   return parseFloat(b.points) - parseFloat(a.points); %>
-          <% }); %>
+            <%# Sort teams by date %>
+            <% league.games = league.games.sort(function(a, b) {                %>
+            <%   if (a.date < b.date) {                           %>
+            <%     return -1;                                     %>
+            <%   }                                                %>
+            <%   if (a.date > b.date) {                           %>
+            <%     return 1;                                      %>
+            <%   }                                                %>
+            <%   return 0;                                        %>
+            <% })                                                 %>
           <% for(var i = 0; i < league.games.length; i++) { %>
             <tr>
               <td><a href="/games/<%= league.games[i]._id %>"><%= league.games[i].date.toJSON().split('T')[0] %></a></td>
