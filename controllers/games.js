@@ -37,8 +37,6 @@ router.post('/', function(req, res) {
 
   req.body.date = new Date(date[0], date[1]-1, date[2], 0);
 
-  console.log(req.body);
-
   League.findById(req.body.leagueId, function(err, foundLeague) {
     Team.findById(req.body.home, function(err, homeTeam) {
       req.body.home = homeTeam;
@@ -81,20 +79,24 @@ router.get('/:id/edit', function(req, res) {
       });
     });
   } else {
-    res.redirect('/games');
+    res.redirect('/leagues');
   }
 });
 
 // PUT
 router.put('/:id', function(req, res) {
-  req.body.points = parseInt(req.body.wins) * 3 + parseInt(req.body.ties); // calculate points
-
-  Game.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedGame) {
-    League.findOne({ 'games._id' : req.params.id }, function(err, foundLeague) {
-      foundLeague.games.id(req.params.id).remove();
-      foundLeague.games.push(updatedGame);
-      foundLeague.save(function(err, data) {
-        res.redirect('/leagues/' + foundLeague._id);
+  League.findOne({ 'games._id' : req.params.id }, function(err, foundLeague) {
+    Team.findById(req.body.home, function(err, homeTeam) {
+      req.body.home = homeTeam;
+      Team.findById(req.body.away, function(err, awayTeam) {
+        req.body.away = awayTeam;
+        Game.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedGame) {
+          foundLeague.games.id(req.params.id).remove();
+          foundLeague.games.push(updatedGame);
+          foundLeague.save(function(err, data) {
+            res.redirect('/leagues/' + foundLeague._id);
+          });
+        });
       });
     });
   });
@@ -106,7 +108,7 @@ router.delete('/:id', function(req, res) {
     League.findOne({ 'games._id' : req.params.id }, function(err, foundLeague) {
       foundLeague.games.id(req.params.id).remove();
       foundLeague.save(function(err, savedLeague) {
-        res.redirect('/games');
+        res.redirect('/leagues');
       });
     });
   });

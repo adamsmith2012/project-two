@@ -55,7 +55,6 @@
     <hr>
 		<main class="container">
       <form action="/games/<%= game._id %>?_method=PUT" method="POST">
-        <input type="hidden" name="leagueId" value="<%= league._id %>">
         <div class="form-group">
           <label for="date">Date</label>
           <% var date = game.date.toJSON().split('T')[0]; %>
@@ -109,6 +108,12 @@
           <input class="form-control btn btn-default" type="submit" value="Update Game">
         </div>
       </form>
+      <hr>
+      <div class="text-center">
+        <form class="" action="/games/<%= game.id %>?_method=DELETE" method="POST">
+          <input class="btn btn-danger" type="submit" value="Delete Game">
+        </form>
+      </div>
     </main>
   </body>
 </html>
